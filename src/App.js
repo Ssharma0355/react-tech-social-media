@@ -1,23 +1,33 @@
-import React, { useState, useEffect } from "react";
-import SignupPage from "./pages/SignupPage";
-import ThemeToggle from "./widgets/ThemeToggle";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import routes from "./routes/routes";
+import PrivateRoute from "./routes/PrivateRoute";
+import Navbar from "./components/Navbar";
+import useThemeStore from "./store/themeStore";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  // Optional: persist mode in localStorage
-
+  const darkMode = useThemeStore((state) => state.darkMode);
 
   return (
     <div className={`${darkMode ? "dark" : ""} min-h-screen`}>
-      {/* Page container */}
-      <div className="bg-lightBg text-lightText dark:bg-darkBg dark:text-darkText transition-colors duration-300 min-h-screen flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold mb-4">
-          React + Tailwind Dark/Light Mode
-        </h1>
+      <div className="bg-lightBg text-lightText dark:bg-darkBg dark:text-darkText transition-colors duration-300 min-h-screen flex flex-col">
+        <Router>
+          <Routes>
+            {/* Public Routes */}
+            {routes.public.map(({ path, element }, idx) => (
+              <Route key={idx} path={path} element={element} />
+            ))}
 
-        {/* Toggle button */}
-        <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-        <SignupPage />
+            {/* Private Routes */}
+            {routes.private.map(({ path, element }, idx) => (
+              <Route
+                key={idx}
+                path={path}
+                element={<PrivateRoute>{element}</PrivateRoute>}
+              />
+            ))}
+          </Routes>
+        </Router>
       </div>
     </div>
   );
