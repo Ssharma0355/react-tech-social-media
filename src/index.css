@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: smooth transition for background/text */
+body {
+  @apply bg-lightBg text-lightText dark:bg-darkBg dark:text-darkText;
+  transition: background-color 0.3s, color 0.3s;
+}
