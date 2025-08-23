@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
+import ThemeToggle from "./Widgets/ThemeToggle";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-
   // Optional: persist mode in localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem("darkMode") === "true";
-    setDarkMode(saved);
-  }, []);
 
-  useEffect(() => {
-    localStorage.setItem("darkMode", darkMode);
-  }, [darkMode]);
 
   return (
     <div className={`${darkMode ? "dark" : ""} min-h-screen`}>
@@ -22,12 +15,7 @@ function App() {
         </h1>
 
         {/* Toggle button */}
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="px-4 py-2 rounded bg-gray-300 dark:bg-gray-700 text-black dark:text-white transition-colors"
-        >
-          {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-        </button>
+        <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
       </div>
     </div>
   );
