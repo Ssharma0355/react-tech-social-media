@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ThemeToggle from "./Widgets/ThemeToggle";
+import SignupPage from "./pages/SignupPage";
+import ThemeToggle from "./widgets/ThemeToggle";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -16,6 +17,7 @@ function App() {
 
         {/* Toggle button */}
         <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+        <SignupPage />
       </div>
     </div>
   );
