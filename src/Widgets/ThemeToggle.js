@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-const ThemeToggle = ({darkMode, setDarkMode}) => {
-    useEffect(() => {
-      const saved = localStorage.getItem("darkMode") === "true";
-      setDarkMode(saved);
-    }, []);
+const ThemeToggle = ({ darkMode, setDarkMode }) => {
+  useEffect(() => {
+    const saved = localStorage.getItem("darkMode") === "true";
+    setDarkMode(saved);
+  }, []);
 
   return (
     <div>
@@ -16,6 +16,6 @@ const ThemeToggle = ({darkMode, setDarkMode}) => {
       </button>
     </div>
   );
-}
+};
 
-export default ThemeToggle
+export default ThemeToggle;
