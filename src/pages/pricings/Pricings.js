@@ -1,11 +1,13 @@
 import React from 'react'
+import Navbar from '../../components/Navbar'
+import NavLayout from '../../layouts/NavLayout';
 
 const Pricings = () => {
   return (
-    <div>
+    <NavLayout>
       Pricing
-    </div>
-  )
+    </NavLayout>
+  );
 }
 
 export default Pricings
