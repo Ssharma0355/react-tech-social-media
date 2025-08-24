@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { FiSun } from "react-icons/fi";
+import { IoMdMoon } from "react-icons/io";
+
 
 const ThemeToggle = ({ darkMode, setDarkMode }) => {
   useEffect(() => {
@@ -7,12 +10,12 @@ const ThemeToggle = ({ darkMode, setDarkMode }) => {
   }, [setDarkMode]);
 
   return (
-    <div>
+    <div className="flex">
       <button
         onClick={() => setDarkMode(!darkMode)}
         className="px-4 py-2 rounded bg-gray-300 dark:bg-gray-700 text-black dark:text-white transition-colors"
       >
-        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+        {darkMode ? <FiSun className="text-yellow" /> : <IoMdMoon />}
       </button>
     </div>
   );
