@@ -11,6 +11,16 @@ const Navbar = () => {
       const toSignupPage = () =>{
         navigate("/signup");
       }
+      const toHomePage = () =>{
+        navigate("/")
+      }
+       const toPricingPage = () => {
+         navigate("/pricings");
+       };
+
+       const toFeaturesPage = () =>{
+         navigate("/features");
+       }
 
   return (
     <nav
@@ -25,19 +35,19 @@ const Navbar = () => {
       </div>
       <div className="flex flex-row gap-4">
         <button
-          onClick={toSignupPage}
+          onClick={toHomePage}
           className="p-2 dark:text-darkText text-[#4D4D4D] font-medium rounded-[8px]"
         >
           Home
         </button>
         <button
-          onClick={toSignupPage}
+          onClick={toPricingPage}
           className="p-2 dark:text-darkText text-[#4D4D4D] font-medium rounded-[8px]"
         >
           Pricings
         </button>
         <button
-          onClick={toSignupPage}
+          onClick={toFeaturesPage}
           className="p-2 dark:text-darkText text-[#4D4D4D] font-medium rounded-[8px]"
         >
           Features
@@ -46,7 +56,7 @@ const Navbar = () => {
           onClick={toSignupPage}
           className="p-2 bg-[#4CAF50] dark:text-darkText text-[#FFFFFF] font-medium rounded-[8px]"
         >
-          SignUp &rarr;
+          Register Now &rarr;
         </button>
         <ThemeToggle darkMode={darkMode} setDarkMode={toggleDarkMode} />
       </div>
