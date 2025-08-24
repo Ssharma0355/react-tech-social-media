@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        lightBg: "#f6f6f6", // your default light background
+        lightBg: "#F5F7FA", // your default light background
         lightText: "#262626", // default light text
         darkBg: "#121212", // default dark background
         darkText: "#ffffff", // default dark text
