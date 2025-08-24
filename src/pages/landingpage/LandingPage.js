@@ -1,11 +1,16 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import NavLayout from '../../layouts/NavLayout'
+import CaruselSection from './CaruselSection'
 
 const LandingPage = () => {
   return (
    <NavLayout>
-    hii
+    <main>
+      {/* carusel */}
+      <CaruselSection />
+
+    </main>
    </NavLayout>
   )
 }
