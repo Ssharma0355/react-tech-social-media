@@ -6,21 +6,21 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useThemeStore();
-      const navigate = useNavigate();
+  const navigate = useNavigate();
 
-      const toSignupPage = () =>{
-        navigate("/signup");
-      }
-      const toHomePage = () =>{
-        navigate("/")
-      }
-       const toPricingPage = () => {
-         navigate("/pricings");
-       };
+  const toSignupPage = () => {
+    navigate("/signup");
+  };
+  const toHomePage = () => {
+    navigate("/");
+  };
+  const toPricingPage = () => {
+    navigate("/pricings");
+  };
 
-       const toFeaturesPage = () =>{
-         navigate("/features");
-       }
+  const toFeaturesPage = () => {
+    navigate("/features");
+  };
 
   return (
     <nav
