@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
+import NavLayout from '../../layouts/NavLayout';
 import useThemeStore from "../../store/themeStore";
-import NavLayout from "../../layouts/NavLayout";
-import CaruselSection from "../landingpage/Section1/CaruselSection";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import CaruselSection from '../landingpage/Section1/CaruselSection';
 
-const SignupPage = () => {
+const LoginPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
 
   return (
@@ -19,24 +19,6 @@ const SignupPage = () => {
             </div>
             <form action="Submit" className="flex flex-col gap-4">
               <div className="flex flex-row gap-4 w-full">
-                <div className="flex flex-col gap-1 w-full">
-                  <label htmlFor="">First Name</label>
-                  <input
-                    className="p-1 rounded-[8px]"
-                    type="text"
-                    name=""
-                    id=""
-                  />
-                </div>
-                <div className="flex flex-col gap-1 w-full">
-                  <label htmlFor="">Last Name</label>
-                  <input
-                    className="p-1 rounded-[8px]"
-                    type="text"
-                    name=""
-                    id=""
-                  />
-                </div>
               </div>
               <div className="flex flex-col gap-1">
                 <label htmlFor="">Email</label>
@@ -63,7 +45,9 @@ const SignupPage = () => {
             <div>
               <p>
                 You already have account?{" "}
-                <Link to={"/login"} className="text-[#4CAF50] font-bold">Login</Link>
+                <Link to={"/signup"} className="text-[#4CAF50] font-bold">
+                  Signup
+                </Link>
               </p>
             </div>
           </div>
@@ -73,6 +57,6 @@ const SignupPage = () => {
       </main>
     </NavLayout>
   );
-};
+}
 
-export default SignupPage;
+export default LoginPage
