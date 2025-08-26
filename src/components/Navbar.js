@@ -29,7 +29,7 @@ const Navbar = () => {
       } flex flex-row justify-between p-4 items-center`}
     >
       <div className="flex">
-        <h1 className="p-2 dark:text-darkText text-[#4CAF50] font-medium ">
+        <h1 className="p-2 dark:text-darkText text-[#4CAF50] font-bold">
           Sachin's Development
         </h1>
       </div>
