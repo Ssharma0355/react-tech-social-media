@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+## Design for MVP
+<img width="1474" height="660" alt="image" src="https://github.com/user-attachments/assets/8aac2359-0e3c-4c07-8f0e-8e5d8cfc7ecd" />
+
+
 In the project directory, you can run:
 
 ### `npm start`
