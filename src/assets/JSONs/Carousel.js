@@ -1,10 +1,11 @@
 import ConnectionImg from "../Images/connection.jpg";
+import MeaningFullImg from "../Images/meaningful.jpeg"
 
 export const CaruselData = [
   {
     connection: [
       {
-        img: ConnectionImg,
+        img: MeaningFullImg,
         title: "Build Meaningful Connections",
         desc: "Expand your network with professionals from your domain and grow together.",
       },
