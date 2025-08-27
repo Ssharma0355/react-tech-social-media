@@ -4,6 +4,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import Pricings from "../pages/pricings/Pricings";
 import Features from "../pages/features/Features";
 import LoginPage from "../pages/authpage/LoginPage";
+import Onboarding from "../pages/onboarding/Onboarding";
 
 const routes = {
   public: [
@@ -12,6 +13,7 @@ const routes = {
     { path: "/pricings", element: <Pricings /> },
     { path: "/features", element: <Features /> },
     { path: "/login", element: <LoginPage /> },
+    { path: "/onboarding", element: <Onboarding /> },
     { path: "/*", element: <h1>Page not found</h1> },
   ],
   private: [{ path: "/dashboard", element: <Dashboard /> }],
