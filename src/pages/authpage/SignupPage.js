@@ -30,7 +30,7 @@ const SignupPage = () => {
 
          if (firstName && lastName && email && password) {
            // ✅ All fields filled
-           navigate("/onboarding");
+           navigate("/verify-email");
          } else {
            alert("Please fill all required fields.");
          }
