@@ -5,6 +5,7 @@ import Pricings from "../pages/pricings/Pricings";
 import Features from "../pages/features/Features";
 import LoginPage from "../pages/authpage/LoginPage";
 import Onboarding from "../pages/onboarding/Onboarding";
+import VerifyEmail from "../pages/email-verification/VerifyEmail";
 
 const routes = {
   public: [
@@ -14,6 +15,8 @@ const routes = {
     { path: "/features", element: <Features /> },
     { path: "/login", element: <LoginPage /> },
     { path: "/onboarding", element: <Onboarding /> },
+    { path: "/verify-email", element: <VerifyEmail /> },
+
     { path: "/*", element: <h1>Page not found</h1> },
   ],
   private: [{ path: "/dashboard", element: <Dashboard /> }],
