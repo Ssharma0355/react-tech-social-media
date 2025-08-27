@@ -6,6 +6,8 @@ import Features from "../pages/features/Features";
 import LoginPage from "../pages/authpage/LoginPage";
 import Onboarding from "../pages/onboarding/Onboarding";
 import VerifyEmail from "../pages/email-verification/VerifyEmail";
+import HiringDetails from "../pages/onboarding/hiringUser/HiringDetails";
+import PersonalInfo from "../pages/onboarding/commonUser/PersonalInfo";
 
 const routes = {
   public: [
@@ -16,7 +18,8 @@ const routes = {
     { path: "/login", element: <LoginPage /> },
     { path: "/onboarding", element: <Onboarding /> },
     { path: "/verify-email", element: <VerifyEmail /> },
-
+    { path: "/hiring-onboarding", element: <HiringDetails /> },
+    { path: "/candidate-onboarding", element: <PersonalInfo /> },
     { path: "/*", element: <h1>Page not found</h1> },
   ],
   private: [{ path: "/dashboard", element: <Dashboard /> }],
