@@ -54,7 +54,7 @@ const Features = () => {
       <section className="max-w-6xl mx-auto px-6 py-16">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4">
+          <h1 className="text-4xl text-[#4CAF50] font-bold mb-4">
             Find Jobs, Collaborators & Opportunities Seamlessly
           </h1>
           <p className="text-lg text-gray-600">
@@ -84,7 +84,10 @@ const Features = () => {
           <h2 className="text-2xl font-bold mb-4">
             Your Next Job, Cofounder, or Talent is Just One Swipe Away
           </h2>
-          <button onClick={toSignuppage} className="px-6 py-3 bg-[#4CAF50] text-white rounded-xl shadow hover:bg-[#3ba33f] transition">
+          <button
+            onClick={toSignuppage}
+            className="px-6 py-3 bg-[#4CAF50] text-white rounded-xl shadow hover:bg-[#3ba33f] transition"
+          >
             Get Started Free
           </button>
         </div>
