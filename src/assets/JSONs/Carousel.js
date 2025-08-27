@@ -1,5 +1,7 @@
 import ConnectionImg from "../Images/connection.jpg";
-import MeaningFullImg from "../Images/meaningful.jpeg"
+import MeaningFullImg from "../Images/meaningful.jpeg";
+import CollabImg from "../Images/collaborate.webp";
+import TopTalentImg from "../Images/top.webp"
 
 export const CaruselData = [
   {
@@ -12,14 +14,14 @@ export const CaruselData = [
     ],
     hiring: [
       {
-        img: ConnectionImg,
+        img: TopTalentImg,
         title: "Hire Top Talent Effortlessly",
         desc: "Swipe through skilled developers, designers, and tech experts to find your perfect fit.",
       },
     ],
     collaborate: [
       {
-        img: ConnectionImg,
+        img: CollabImg,
         title: "Collaborate Seamlessly",
         desc: "Work on projects with like-minded developers and designers across the globe.",
       },
