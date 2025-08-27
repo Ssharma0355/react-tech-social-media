@@ -48,7 +48,7 @@ const CaruselSection = () => {
                 alt={item.title}
                 className="w-[30rem] h-[20rem] object-cover rounded-xl mb-4"
               />
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              <h2 className="text-lg font-semibold text-[#4CAF50] dark:text-gray-100">
                 {item.title}
               </h2>
               {item.desc && (

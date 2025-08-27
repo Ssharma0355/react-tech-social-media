@@ -7,7 +7,7 @@ const NavLayout = ({children}) => {
     <main className='min-h-screen'>
         <Navbar />
           <div >{children}</div>
-      <Footer />
+      {/* <Footer /> */}
       
     </main>
   )
