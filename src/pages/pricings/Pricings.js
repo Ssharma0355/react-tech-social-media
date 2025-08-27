@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import NavLayout from '../../layouts/NavLayout';
+import PricingTab from '../../Widgets/PricingTab';
 
 const Pricings = () => {
   return (
@@ -10,7 +11,7 @@ const Pricings = () => {
           <h1 className="text-[#4CAF50] text-[32px]">Your Dream is priceless?</h1>
           <h2 className='text-[24px]'>But we are budget friendly!!</h2>
         </div>
-        <h1>comming soon</h1>
+        <PricingTab />
       </main>
     </NavLayout>
   );
