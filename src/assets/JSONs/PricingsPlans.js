@@ -84,7 +84,6 @@ export const PricingsPlan = {
           "Priority DM access for referrals",
           "ATS & AI resume builder",
           "Priority customer support",
-          "Exclusive hiring events"
         ]
       }
     ]
