@@ -29,10 +29,10 @@ const VerifyEmail = () => {
     const enteredOtp = otp.join("");
     if (enteredOtp.length === 6) {
       navigate("/onboarding");
-    } else {
-      alert("Please enter complete OTP");
     }
   };
+
+  const isOtpComplete = otp.every((digit) => digit !== "");
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen px-4 bg-gray-50">
@@ -59,9 +59,16 @@ const VerifyEmail = () => {
           ))}
         </div>
 
+        {/* Verify Button */}
         <button
           onClick={handleVerify}
-          className="w-full mt-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition"
+          disabled={!isOtpComplete}
+          className={`w-full mt-6 py-2 rounded-lg transition 
+            ${
+              isOtpComplete
+                ? "bg-[#4CAF50] text-[#F6F6F6] hover:bg-[#316f33]"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
         >
           Verify
         </button>
