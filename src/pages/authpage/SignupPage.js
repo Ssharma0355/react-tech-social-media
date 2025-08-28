@@ -3,6 +3,8 @@ import useThemeStore from "../../store/themeStore";
 import NavLayout from "../../layouts/NavLayout";
 import CaruselSection from "../landingpage/Section1/CaruselSection";
 import { Link, useNavigate } from "react-router-dom";
+import { CgMail } from "react-icons/cg";
+
 
 
 const SignupPage = () => {
@@ -39,7 +41,7 @@ const SignupPage = () => {
   return (
     <NavLayout>
       <main className={`${darkMode ? "dark" : ""}`}>
-        <div className="flex flex-row justify-center align-center justify-center gap-6 px-12 py-8 w-full">
+        <div className="flex flex-row align-center justify-center gap-6 px-12 py-8 w-full">
           <div className="flex flex-col align-center w-full p-4 gap-8">
             <div className="flex align-center justify-center">
               <button className="w-full bg-gray-200 rounded-[8px] p-1">
