@@ -3,57 +3,62 @@ import useThemeStore from "../../store/themeStore";
 import NavLayout from "../../layouts/NavLayout";
 import CaruselSection from "../landingpage/Section1/CaruselSection";
 import { Link, useNavigate } from "react-router-dom";
-import { CgMail } from "react-icons/cg";
-
-
 
 const SignupPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [userInfo, setUserInfo] = useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    });
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
-     const handleChange = (e) => {
-       const { name, value } = e.target;
-       setUserInfo((prev) => ({
-         ...prev,
-         [name]: value,
-       }));
-     };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-       const handleSubmit = (e) => {
-         e.preventDefault();
-         const { firstName, lastName, email, password } = userInfo;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { firstName, lastName, email, password } = userInfo;
 
-         if (firstName && lastName && email && password) {
-           // ✅ All fields filled
-           navigate("/verify-email");
-         } else {
-           alert("Please fill all required fields.");
-         }
-       };
+    if (firstName && lastName && email && password) {
+      navigate("/verify-email");
+    } else {
+      alert("Please fill all required fields.");
+    }
+  };
+
+  // ✅ Check if all fields are filled
+  const isFormComplete = Object.values(userInfo).every(
+    (val) => val.trim() !== ""
+  );
 
   return (
     <NavLayout>
-      <main className={`${darkMode ? "dark" : ""}`}>
-        <div className="flex flex-row align-center justify-center gap-6 px-12 py-8 w-full">
-          <div className="flex flex-col align-center w-full p-4 gap-8">
-            <div className="flex align-center justify-center">
-              <button className="w-full bg-gray-200 rounded-[8px] p-1">
+      <main
+        className={`${darkMode ? "dark" : ""} min-h-screen flex items-center`}
+      >
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-6 py-12 w-full max-w-6xl mx-auto">
+          {/* Left Panel - Form */}
+          <div className="flex flex-col w-full md:w-1/2 p-6 bg-white rounded-xl shadow-md gap-6">
+            <div className="flex justify-center">
+              <button className="w-full bg-gray-200 rounded-lg py-2 font-medium hover:bg-gray-300 transition">
                 Signup with Google
               </button>
             </div>
+
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <div className="flex flex-row gap-4 w-full">
+              <div className="flex flex-col md:flex-row gap-4 w-full">
                 <div className="flex flex-col gap-1 w-full">
-                  <label htmlFor="">First Name</label>
+                  <label>First Name</label>
                   <input
-                    className="p-1 rounded-[8px]"
+                    className="p-2 rounded-lg border border-gray-300 w-full"
                     type="text"
                     name="firstName"
                     value={userInfo.firstName}
@@ -61,9 +66,9 @@ const SignupPage = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-1 w-full">
-                  <label htmlFor="">Last Name</label>
+                  <label>Last Name</label>
                   <input
-                    className="p-1 rounded-[8px]"
+                    className="p-2 rounded-lg border border-gray-300 w-full"
                     type="text"
                     name="lastName"
                     value={userInfo.lastName}
@@ -72,9 +77,9 @@ const SignupPage = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="">Email</label>
+                <label>Email</label>
                 <input
-                  className="p-1 rounded-[8px]"
+                  className="p-2 rounded-lg border border-gray-300 w-full"
                   type="email"
                   name="email"
                   value={userInfo.email}
@@ -82,33 +87,45 @@ const SignupPage = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label htmlFor="">Password</label>
+                <label>Password</label>
                 <input
-                  className="p-1 rounded-[8px]"
+                  className="p-2 rounded-lg border border-gray-300 w-full"
                   type="password"
                   name="password"
                   value={userInfo.password}
                   onChange={handleChange}
                 />
               </div>
+
+              {/* ✅ Disabled until all fields filled */}
               <button
                 type="submit"
-                className="w-full bg-gray-200 rounded-[8px] p-1"
+                disabled={!isFormComplete}
+                className={`w-full mt-6 py-2 rounded-lg transition font-semibold
+                  ${
+                    isFormComplete
+                      ? "bg-[#4CAF50] text-white hover:bg-[#388E3C]"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
               >
-                Signup with email
+                Signup with Email
               </button>
             </form>
-            <div>
+
+            <div className="text-center">
               <p>
-                You already have account?{" "}
+                Already have an account?{" "}
                 <Link to={"/login"} className="text-[#4CAF50] font-bold">
                   Login
                 </Link>
               </p>
             </div>
           </div>
-          {/* right pannel  */}
-          <CaruselSection />
+
+          {/* Right Panel - Carousel */}
+          <div className="hidden md:flex md:w-1/2 justify-center">
+            <CaruselSection />
+          </div>
         </div>
       </main>
     </NavLayout>
