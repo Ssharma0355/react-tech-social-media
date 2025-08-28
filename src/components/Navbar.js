@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ThemeToggle from "../Widgets/ThemeToggle";
 import useThemeStore from "../store/themeStore";
 import { Menu, X } from "lucide-react"; // Hamburger & cross icons
@@ -7,24 +7,22 @@ import { Menu, X } from "lucide-react"; // Hamburger & cross icons
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useThemeStore();
   const navigate = useNavigate();
+  const location = useLocation(); // 👈 get current path
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toSignupPage = () => {
-    navigate("/signup");
+  // Navigation helpers
+  const handleNavigate = (path) => {
+    navigate(path);
     setMenuOpen(false);
   };
-  const toHomePage = () => {
-    navigate("/");
-    setMenuOpen(false);
-  };
-  const toPricingPage = () => {
-    navigate("/pricings");
-    setMenuOpen(false);
-  };
-  const toFeaturesPage = () => {
-    navigate("/features");
-    setMenuOpen(false);
-  };
+
+  // Reusable style for buttons
+  const navButtonStyle = (path) =>
+    `p-2 font-medium rounded-[8px] transition ${
+      location.pathname === path
+        ? "text-[#4CAF50]" // Active route
+        : "dark:text-darkText text-[#4D4D4D] hover:text-[#4CAF50]"
+    }`;
 
   return (
     <nav
@@ -42,26 +40,26 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className="hidden md:flex flex-row gap-4 items-center">
         <button
-          onClick={toHomePage}
-          className="p-2 dark:text-darkText text-[#4D4D4D] font-medium rounded-[8px]"
+          onClick={() => handleNavigate("/")}
+          className={navButtonStyle("/")}
         >
           Home
         </button>
         <button
-          onClick={toPricingPage}
-          className="p-2 dark:text-darkText text-[#4D4D4D] font-medium rounded-[8px]"
+          onClick={() => handleNavigate("/pricings")}
+          className={navButtonStyle("/pricings")}
         >
           Pricings
         </button>
         <button
-          onClick={toFeaturesPage}
-          className="p-2 dark:text-darkText text-[#4D4D4D] font-medium rounded-[8px]"
+          onClick={() => handleNavigate("/features")}
+          className={navButtonStyle("/features")}
         >
           Features
         </button>
         <button
-          onClick={toSignupPage}
-          className="p-2 bg-[#4CAF50] dark:text-darkText text-[#FFFFFF] font-medium rounded-[8px]"
+          onClick={() => handleNavigate("/signup")}
+          className="p-2 bg-[#4CAF50] text-white font-medium rounded-[8px] hover:bg-[#43a047]"
         >
           Register Now &rarr;
         </button>
@@ -86,26 +84,26 @@ const Navbar = () => {
           } flex flex-col gap-2 p-4 md:hidden`}
         >
           <button
-            onClick={toHomePage}
-            className="p-2 text-left dark:text-darkText text-[#4D4D4D] font-medium"
+            onClick={() => handleNavigate("/")}
+            className={navButtonStyle("/")}
           >
             Home
           </button>
           <button
-            onClick={toPricingPage}
-            className="p-2 text-left dark:text-darkText text-[#4D4D4D] font-medium"
+            onClick={() => handleNavigate("/pricings")}
+            className={navButtonStyle("/pricings")}
           >
             Pricings
           </button>
           <button
-            onClick={toFeaturesPage}
-            className="p-2 text-left dark:text-darkText text-[#4D4D4D] font-medium"
+            onClick={() => handleNavigate("/features")}
+            className={navButtonStyle("/features")}
           >
             Features
           </button>
           <button
-            onClick={toSignupPage}
-            className="p-2 bg-[#4CAF50] dark:text-darkText text-white font-medium rounded-[8px]"
+            onClick={() => handleNavigate("/signup")}
+            className="p-2 bg-[#4CAF50] text-white font-medium rounded-[8px] hover:bg-[#43a047]"
           >
             Register Now &rarr;
           </button>
