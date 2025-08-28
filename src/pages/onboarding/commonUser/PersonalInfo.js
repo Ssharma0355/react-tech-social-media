@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from "react";
 import useAuthStore from "../../../store/authStore"; // zustand store
+import { useNavigate } from "react-router-dom";
 
 const PersonalInfo = () => {
   const { userInfo } = useAuthStore();
   const name = `${userInfo.firstName} ${userInfo.lastName}`;
   const email = userInfo.email;
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     govtIdType: "",
@@ -44,6 +46,7 @@ const PersonalInfo = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
+    navigate("/dashboard")
     console.log("Form submitted:", formData);
   };
 
