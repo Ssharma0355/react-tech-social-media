@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HiringDetails = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ const HiringDetails = () => {
     hiringManager: "",
   });
 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -29,8 +31,10 @@ const HiringDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission
+    navigate("/dashboard")
     
     console.log("Form submitted:", formData);
+
   };
 
   return (
