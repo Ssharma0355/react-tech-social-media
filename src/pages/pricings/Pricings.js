@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../../components/Navbar'
 import NavLayout from '../../layouts/NavLayout';
 import PricingTab from '../../Widgets/PricingTab';
 import useThemeStore from "../../store/themeStore";
