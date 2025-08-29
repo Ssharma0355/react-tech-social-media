@@ -23,7 +23,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   return (
     <aside
       className={`
-        fixed top-0 left-0 h-full w-64 bg-gray-900 text-gray-100 flex flex-col z-40
+        fixed top-0 left-0 h-full w-64 bg-black text-gray-100 flex flex-col z-40
         transform ${isOpen ? "translate-x-0" : "-translate-x-full"} 
         transition-transform duration-300 ease-in-out 
         md:translate-x-0 md:static md:flex
