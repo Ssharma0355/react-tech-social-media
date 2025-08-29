@@ -63,7 +63,7 @@ const Navbar = () => {
         >
           Register Now &rarr;
         </button>
-        <ThemeToggle darkMode={darkMode} setDarkMode={toggleDarkMode} />
+        {/* <ThemeToggle darkMode={darkMode} setDarkMode={toggleDarkMode} /> */}
       </div>
 
       {/* Mobile Menu Button */}

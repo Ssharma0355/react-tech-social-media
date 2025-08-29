@@ -4,19 +4,23 @@ import { persist } from "zustand/middleware";
 const useThemeStore = create(
   persist(
     (set) => ({
+      // Always light mode for now
       darkMode: false,
-      hasHydrated: false, // track hydration
-      toggleDarkMode: () =>
-        set((state) => ({
-          darkMode: !state.darkMode,
-        })),
-      setDarkMode: (value) => set({ darkMode: value }),
+      hasHydrated: false,
+
+      // 🔒 Future dark mode functions (kept for later use)
+      // toggleDarkMode: () =>
+      //   set((state) => ({
+      //     darkMode: !state.darkMode,
+      //   })),
+      // setDarkMode: (value) => set({ darkMode: value }),
+
       setHasHydrated: (val) => set({ hasHydrated: val }),
     }),
     {
       name: "theme-storage",
       onRehydrateStorage: () => (state) => {
-        state?.setHasHydrated(true); // mark store as ready
+        state?.setHasHydrated(true);
       },
     }
   )

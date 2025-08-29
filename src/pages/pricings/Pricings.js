@@ -2,11 +2,16 @@ import React from 'react'
 import Navbar from '../../components/Navbar'
 import NavLayout from '../../layouts/NavLayout';
 import PricingTab from '../../Widgets/PricingTab';
+import useThemeStore from "../../store/themeStore";
+
 
 const Pricings = () => {
+  const darkMode = useThemeStore((state) => state.darkMode);
+
   return (
     <NavLayout>
-      <main className="flex flex-col justify-center px-8 md:px-12 py-8">
+      <main className={`flex flex-col justify-center px-8 md:px-12 py-8 ${darkMode ? "dark" : ""}
+`}>
         <div className="flex flex-col text-center ">
           <h1 className="text-4xl text-[#4CAF50] font-bold mb-4">
             Your Dream is priceless?
