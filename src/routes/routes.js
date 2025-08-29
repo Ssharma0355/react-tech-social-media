@@ -20,9 +20,13 @@ const routes = {
     { path: "/verify-email", element: <VerifyEmail /> },
     { path: "/hiring-onboarding", element: <HiringDetails /> },
     { path: "/candidate-onboarding", element: <PersonalInfo /> },
+    { path: "/dashboard", element: <Dashboard /> }, // 👈 dashboard is public for now
     { path: "/*", element: <h1>Page not found</h1> },
   ],
-  private: [{ path: "/dashboard", element: <Dashboard /> }],
+
+  // private: [
+  //   { path: "/dashboard", element: <Dashboard /> },
+  // ],
 };
 
 export default routes;
