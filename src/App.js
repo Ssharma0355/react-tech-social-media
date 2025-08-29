@@ -19,13 +19,13 @@ function App() {
             ))}
 
             {/* Private Routes */}
-            {routes.private.map(({ path, element }, idx) => (
+            {/* {routes.private.map(({ path, element }, idx) => (
               <Route
                 key={idx}
                 path={path}
                 element={<PrivateRoute>{element}</PrivateRoute>}
               />
-            ))}
+            ))} */}
           </Routes>
         </Router>
       </div>
