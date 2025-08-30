@@ -23,7 +23,7 @@ const JobCard = ({
   onNotInterested,
 }) => {
   return (
-    <main className="flex flex-col w-full p-6 border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition bg-white gap-4">
+    <main className="flex flex-col w-full p-6 border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition bg-white gap-4 mb-4">
       {/* Top Row */}
       <div className="flex flex-row justify-between items-start">
         {/* Company Info */}
