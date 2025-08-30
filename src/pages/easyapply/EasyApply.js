@@ -13,7 +13,7 @@ const EasyApply = () => {
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3">
           <h1 className="text-2xl font-bold mb-4">Easy Apply</h1>
-          <SearchBar />
+          <SearchBar placeholder={"Search jobs..."} />
           <SwitchButton userType={userType} setUserType={setUserType} />
         </div>
         <div className="flex flex-col">

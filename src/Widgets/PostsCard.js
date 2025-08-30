@@ -3,7 +3,7 @@ import postsData from '../assets/JSONs/postsData'
 
 const PostsCard = () => {
   return (
-    <div className="grid grid-cols-1 md:grids-cols-2 gap-4 p-4">
+    <div className="grid grid-cols-1 md:grids-cols-2 gap-4 py-8">
       {postsData.map((post) => (
         <div
           key={post.id}

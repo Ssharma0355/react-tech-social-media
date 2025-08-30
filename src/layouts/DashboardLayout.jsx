@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }) => {
       <main className="flex-1 bg-gray-100 p-6 overflow-y-auto relative">
         {/* Toggle Button (Mobile only) */}
         <button
-          className="md:hidden p-2 mb-4 text-gray-700"
+          className="md:hidden mb-4 text-gray-700"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
