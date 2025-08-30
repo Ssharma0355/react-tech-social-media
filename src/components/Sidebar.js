@@ -67,7 +67,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       {/* Logout */}
       <div
         className="p-4 border-t border-gray-700 cursor-pointer hover:text-red-400"
-        onClick={() => handleNavigate("/logout")}
+        onClick={() => handleNavigate("/")}
       >
         <LogOut size={20} className="inline mr-2" />
         Logout
