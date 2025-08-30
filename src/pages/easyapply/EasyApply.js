@@ -4,7 +4,7 @@ import JobCard from '../../Widgets/JobCard';
 import CandidateCard from '../../Widgets/CandidateCard';
 
 const EasyApply = () => {
-  const [userType, setusertpe] = useState(false);
+  const [userType, setusertpe] = useState(true);
   return (
     <DashboardLayout>
       <h1>Easy Apply</h1>
