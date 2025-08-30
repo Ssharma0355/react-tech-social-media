@@ -10,6 +10,9 @@ module.exports = {
         darkBg: "#121212", // default dark background
         darkText: "#ffffff", // default dark text
       },
+      fontFamily: {
+        sans: ["'Source Sans Pro'", "sans-serif"],
+      },
     },
   },
   plugins: [],
