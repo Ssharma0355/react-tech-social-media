@@ -1,4 +1,6 @@
 import React from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const CandidateCard = ({
   name,
@@ -18,7 +20,10 @@ const CandidateCard = ({
   onShortlist,
   onSave,
   onReject,
+  match
 }) => {
+const percentage = match;
+console.log(percentage)
   return (
     <main className="flex flex-col w-full p-6 border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition bg-white gap-4 mb-4">
       {/* Top Row */}
@@ -48,61 +53,81 @@ const CandidateCard = ({
       </div>
 
       {/* Candidate Details */}
-      <div className="flex flex-col gap-2">
-        <h3 className="text-xl font-bold text-gray-700">{experience}</h3>
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl font-bold text-gray-700">{experience}</h3>
 
-        {summary && <p className="text-gray-600 mt-2">{summary}</p>}
+          {summary && <p className="text-gray-600 mt-2">{summary}</p>}
 
-        {skills && (
-          <div>
-            <h4 className="font-semibold text-gray-700">Skills:</h4>
-            <p className="text-gray-600">{skills}</p>
+          {skills && (
+            <div>
+              <h4 className="font-semibold text-gray-700">Skills:</h4>
+              <p className="text-gray-600">{skills}</p>
+            </div>
+          )}
+
+          {education && (
+            <div>
+              <h4 className="font-semibold text-gray-700">Education:</h4>
+              <p className="text-gray-600">{education}</p>
+            </div>
+          )}
+
+          {(email || phone || linkedIn || github || resumeLink) && (
+            <div className="text-sm text-gray-400 mt-2 flex flex-col gap-1">
+              {email && <p>Email: {email}</p>}
+              {phone && <p>Phone: {phone}</p>}
+              {linkedIn && (
+                <a
+                  href={linkedIn}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  LinkedIn
+                </a>
+              )}
+              {github && (
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  GitHub
+                </a>
+              )}
+              {resumeLink && (
+                <a
+                  href={resumeLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-green-600 hover:underline"
+                >
+                  View Resume
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col justify-center items-center w-full gap-4">
+          <div style={{ width: 100, height: 100 }}>
+            <CircularProgressbar
+              styles={buildStyles({
+                textColor: "#4CAF50",
+                backgroundColor: "#4CAF50",
+                pathColor: "#4CAF50",
+              })}
+              color={"text-green-600"}
+              value={percentage}
+              text={`${percentage}%`}
+            />
           </div>
-        )}
 
-        {education && (
-          <div>
-            <h4 className="font-semibold text-gray-700">Education:</h4>
-            <p className="text-gray-600">{education}</p>
-          </div>
-        )}
-
-        {(email || phone || linkedIn || github || resumeLink) && (
-          <div className="text-sm text-gray-400 mt-2 flex flex-col gap-1">
-            {email && <p>Email: {email}</p>}
-            {phone && <p>Phone: {phone}</p>}
-            {linkedIn && (
-              <a
-                href={linkedIn}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-500 hover:underline"
-              >
-                LinkedIn
-              </a>
-            )}
-            {github && (
-              <a
-                href={github}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-500 hover:underline"
-              >
-                GitHub
-              </a>
-            )}
-            {resumeLink && (
-              <a
-                href={resumeLink}
-                target="_blank"
-                rel="noreferrer"
-                className="text-green-600 hover:underline"
-              >
-                View Resume
-              </a>
-            )}
-          </div>
-        )}
+          <h1 className="text-center font-medium text-gray-700">
+            Match score for this job role
+          </h1>
+        </div>
       </div>
 
       {/* Desktop Actions */}
