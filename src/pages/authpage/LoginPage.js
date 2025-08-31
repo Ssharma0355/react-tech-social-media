@@ -34,7 +34,7 @@ const LoginPage = () => {
   return (
     <NavLayout>
       <main
-        className={`${darkMode ? "dark" : ""} min-h-screen flex items-center`}
+        className={`${darkMode ? "dark" : ""} h-[90vh] md:min-h-screen flex items-center`}
       >
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 px-6 py-8 w-full max-w-6xl mx-auto">
           {/* Left Panel - Form */}
