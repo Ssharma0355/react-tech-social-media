@@ -65,6 +65,7 @@ export const candidatesData = [
     github: "https://github.com/rahulsharma",
     resumeLink: "/resumes/rahul-sharma.pdf",
     date: "28 Oct, 2025",
+    match: 90,
   },
   {
     id: 2,
@@ -83,5 +84,6 @@ export const candidatesData = [
     github: "https://github.com/ananyagupta",
     resumeLink: "/resumes/ananya-gupta.pdf",
     date: "29 Oct, 2025",
+    match: 40,
   },
 ];
