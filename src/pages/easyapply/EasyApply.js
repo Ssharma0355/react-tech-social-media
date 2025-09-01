@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import JobCard from "../../Widgets/JobCard";
 import CandidateCard from "../../Widgets/CandidateCard";
 import { jobsData, candidatesData } from "../../assets/JSONs/easyApplyData";
 import SwitchButton from "../../Widgets/SwitchButton";
 import SearchBar from "../../Widgets/SearchBar";
+import axios from "axios"
 
 const EasyApply = () => {
+  const [allUsers, setAllUsers] = useState([])
        const [userType, setUserType] = useState(true);
+       const getAllUsers = ()=>{
+        axios
+          .get("http://localhost:8000/user/users")
+          .then((res) => setAllUsers(res.data.users));
+       }
+
+       useEffect(()=>{
+        getAllUsers();
+       },[])
+
+       console.log(allUsers)
+
   return (
     <DashboardLayout>
       <div className="flex flex-col gap-4">
@@ -39,6 +53,11 @@ const EasyApply = () => {
                 />
               ))}
         </div>
+        {allUsers.map((user,id) => (
+          <ul key={id}>
+            <li>{user.firstname}</li>
+          </ul>
+        ))}
       </div>
     </DashboardLayout>
   );
