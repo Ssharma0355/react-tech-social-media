@@ -1,75 +1,98 @@
-# Getting Started with Create React App
+🚀 React Tech Social Media
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern social media application built with React (Create React App) on the frontend and powered by a FastAPI + MongoDB backend.
+This project is designed as an MVP (Minimum Viable Product) showcasing scalable frontend & backend integration for social media features.
 
-## Available Scripts
+👉 Backend Repo: [reactapp-apis](https://github.com/Ssharma0355/reactapp-apis.git) 
 
-## Design for MVP
-<img width="1474" height="660" alt="image" src="https://github.com/user-attachments/assets/8aac2359-0e3c-4c07-8f0e-8e5d8cfc7ecd" />
+📌 Features
+
+🌐 Full-stack application with React, FastAPI, and MongoDB
+
+🔑 User authentication & profile management
+
+📝 Post creation, editing, and interactions
+
+🎨 Responsive UI with clean design
+
+⚡ Fast development with Create React App
+
+📊 Future-ready architecture for scaling
+
+🛠 Tech Stack
+Frontend
+
+React (Create React App)
+
+JavaScript (ES6+)
+
+CSS / Tailwind (optional)
+
+Backend
+
+Python + FastAPI
+
+MongoDB (NoSQL Database)
+
+🎨 MVP Design
+<img width="1474" height="660" alt="image" src="https://github.com/user-attachments/assets/cf207274-a7d1-4044-b970-594a468c5d98" />
 
 
-In the project directory, you can run:
+📂 Project Setup
+Clone the Repository
+git clone https://github.com/your-username/react-tech-social-media.git
+cd react-tech-social-media
 
-### `npm start`
+Install Dependencies
+npm install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Run the App in Development
+npm start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+App will be live at 👉 http://localhost:3000
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+⚙️ Available Scripts
 
-### `npm run build`
+npm start → Runs app in development mode
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npm test → Runs interactive test runner
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm run build → Builds the app for production
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm run eject → Ejects configuration (⚠️ irreversible)
 
-### `npm run eject`
+🚀 Deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Build optimized production bundle:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm run build
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Deploy build/ folder to your hosting provider (Netlify, Vercel, Firebase, etc.)
 
-## Learn More
+📖 Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+React Docs
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create React App Guide
 
-### Code Splitting
+FastAPI Docs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+MongoDB Docs
 
-### Analyzing the Bundle Size
+🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Fork the repo
 
-### Making a Progressive Web App
+Create a new branch (feature/your-feature)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Commit changes
 
-### Advanced Configuration
+Push and create a PR
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+📜 License
 
-### Deployment
+This project is licensed under the MIT License – feel free to use and modify.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# react-tech-social-media
+✨ Built with ❤️ using React, FastAPI, and MongoDB
