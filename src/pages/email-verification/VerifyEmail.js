@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import CaruselSection from "../landingpage/Section1/CaruselSection";
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const VerifyEmail = () => {
   const isOtpComplete = otp.every((digit) => digit !== "");
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen px-4 bg-gray-50">
+    <main className="flex flex-row items-center justify-center min-h-screen px-4 bg-gray-50">
       <div className="flex flex-col items-center gap-4 bg-white shadow-lg rounded-2xl px-10 py-8 w-full max-w-md">
         <h1 className="text-2xl font-semibold">Verify Your Email</h1>
         <p className="text-gray-600 text-center">
@@ -77,6 +78,9 @@ const VerifyEmail = () => {
           Didn’t receive the OTP?{" "}
           <button className="text-blue-600 hover:underline">Resend</button>
         </p>
+      </div>
+      <div className="hidden md:flex md:w-1/2 justify-center">
+        <CaruselSection />
       </div>
     </main>
   );
