@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState(new Array(6).fill("")); // 6-digit OTP
   const inputRefs = useRef([]);
-
+  const {verifyEmail} = useAuthStore()
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return;
 
@@ -25,12 +26,17 @@ const VerifyEmail = () => {
     }
   };
 
-  const handleVerify = () => {
-    const enteredOtp = otp.join("");
-    if (enteredOtp.length === 6) {
+const handleVerify = async () => {
+  const enteredOtp = otp.join("");
+  if (enteredOtp.length === 6) {
+    const result = await verifyEmail(enteredOtp);
+    if (result.success) {
       navigate("/onboarding");
+    } else {
+      alert(result.error);
     }
-  };
+  }
+};
 
   const isOtpComplete = otp.every((digit) => digit !== "");
 
