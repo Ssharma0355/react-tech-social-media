@@ -1,21 +1,69 @@
 // src/store/authStore.js
 import { create } from "zustand";
 
-const useAuthStore = create((set) => ({
+const API_BASE = "https://reactapp-apis-3.onrender.com";
+
+const useAuthStore = create((set, get) => ({
   userInfo: {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   },
-  setUserInfo: (newInfo) =>
+  setUserInfo: (updates) =>
     set((state) => ({
-      userInfo: { ...state.userInfo, ...newInfo },
+      userInfo: { ...state.userInfo, ...updates },
     })),
-  clearUserInfo: () =>
-    set({
-      userInfo: { firstName: "", lastName: "", email: "", password: "" },
-    }),
+
+  // ✅ Signup API
+  signup: async () => {
+    const { firstName, lastName, email, password } = get().userInfo;
+    try {
+      const res = await fetch(`${API_BASE}/user/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstname: firstName,
+          lastname: lastName,
+          email,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Signup failed");
+
+      // ✅ Save email to localStorage for verification
+      localStorage.setItem("signupEmail", email);
+
+      return { success: true, data };
+    } catch (err) {
+      console.error("Signup Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
+
+  // ✅ Email Verification API
+  verifyEmail: async (otp) => {
+    const email = localStorage.getItem("signupEmail");
+    if (!email) return { success: false, error: "No email found" };
+
+    try {
+      const res = await fetch(`${API_BASE}/user/verify-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Verification failed");
+
+      return { success: true, data };
+    } catch (err) {
+      console.error("Verification Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
 }));
 
 export default useAuthStore;

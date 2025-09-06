@@ -8,24 +8,28 @@ import useAuthStore from "../../store/authStore"; // ✅ import store
 const SignupPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
   const navigate = useNavigate();
-
-  const { userInfo, setUserInfo } = useAuthStore(); // ✅ get from store
+  const { userInfo, setUserInfo, signup } = useAuthStore();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo({ [name]: value }); // ✅ update store
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { firstName, lastName, email, password } = userInfo;
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { firstName, lastName, email, password } = userInfo;
 
-    if (firstName && lastName && email && password) {
-      navigate("/verify-email"); // ✅ after signup go to verify
+  if (firstName && lastName && email && password) {
+    const result = await signup();
+    if (result.success) {
+      navigate("/verify-email");
     } else {
-      alert("Please fill all required fields.");
+      alert(result.error);
     }
-  };
+  } else {
+    alert("Please fill all required fields.");
+  }
+};
 
   // ✅ Check if all fields are filled
   const isFormComplete = Object.values(userInfo).every(
