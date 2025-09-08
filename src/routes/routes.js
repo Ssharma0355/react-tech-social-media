@@ -11,6 +11,9 @@ import PersonalInfo from "../pages/onboarding/commonUser/PersonalInfo";
 import EasyApply from "../pages/easyapply/EasyApply";
 import Feed from "../pages/feed/Feed";
 import NotFound from "../components/Notfound";
+import Chat from "../pages/chat/Chat";
+import Profile from "../pages/profile/Profile";
+import Settings from "../pages/settings/Settings";
 
 const routes = {
   public: [
@@ -25,6 +28,13 @@ const routes = {
     { path: "/candidate-onboarding", element: <PersonalInfo /> },// 👈 dashboard is public for now
     { path: "/easy-apply", element: <EasyApply /> },
     { path: "/dashboard", element: <Feed /> },
+    { path: "/chat", element: <Chat /> },
+    { path: "/profile", element: <Profile /> },
+    { path: "/settings", element: <Settings /> },
+
+
+
+
     { path: "/*", element: <NotFound /> },
   ],
 

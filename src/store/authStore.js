@@ -33,9 +33,7 @@ const useAuthStore = create((set, get) => ({
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Signup failed");
 
-      // ✅ Save email to localStorage for verification
       localStorage.setItem("signupEmail", email);
-
       return { success: true, data };
     } catch (err) {
       console.error("Signup Error:", err);
@@ -64,27 +62,28 @@ const useAuthStore = create((set, get) => ({
       return { success: false, error: err.message };
     }
   },
-   login: async () => {
+
+  // ✅ Login API
+  login: async () => {
     const { email, password } = get().userInfo;
     try {
       const res = await fetch(`${API_BASE}/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "login failed");
+      if (!res.ok) throw new Error(data.message || "Login failed");
 
       return { success: true, data };
     } catch (err) {
-      console.error("login Error:", err);
+      console.error("Login Error:", err);
       return { success: false, error: err.message };
     }
   },
+
+  // ✅ Resend OTP
   resendOtp: async () => {
     const email = localStorage.getItem("signupEmail");
     if (!email) return { success: false, error: "No email found" };
@@ -105,7 +104,33 @@ const useAuthStore = create((set, get) => ({
       return { success: false, error: err.message };
     }
   },
-}));
 
+  // ✅ Fetch Jobs & Candidates
+  fetchUsersData: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/user/users`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Fetching users failed");
+
+      // Separate jobs and candidates
+      const jobs = data.users
+        .filter((user) => user.hiring_details)
+        .map((user) => user.hiring_details);
+
+      const candidates = data.users
+        .filter((user) => user.candidate_details)
+        .map((user) => user.candidate_details);
+
+      return { success: true, jobs, candidates };
+    } catch (err) {
+      console.error("Fetch Users Data Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
+}));
 
 export default useAuthStore;
