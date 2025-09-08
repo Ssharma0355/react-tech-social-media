@@ -17,7 +17,7 @@ const EasyApply = () => {
        }
 
        useEffect(()=>{
-        getAllUsers();
+        // getAllUsers();
        },[])
 
        console.log(allUsers)
