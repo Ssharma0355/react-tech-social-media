@@ -14,6 +14,7 @@ import NotFound from "../components/Notfound";
 import Chat from "../pages/chat/Chat";
 import Profile from "../pages/profile/Profile";
 import Settings from "../pages/settings/Settings";
+import Notifications from "../pages/notifications/Notifications";
 
 const routes = {
   public: [
@@ -31,6 +32,8 @@ const routes = {
     { path: "/chat", element: <Chat /> },
     { path: "/profile", element: <Profile /> },
     { path: "/settings", element: <Settings /> },
+    { path: "/notifications", element: <Notifications /> },
+
 
 
 
