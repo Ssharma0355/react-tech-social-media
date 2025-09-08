@@ -5,6 +5,7 @@ import CandidateCard from "../../Widgets/CandidateCard";
 import SwitchButton from "../../Widgets/SwitchButton";
 import SearchBar from "../../Widgets/SearchBar";
 import useAuthStore from "../../store/authStore";
+import LoadingSpinner from "../../Widgets/LoadingSpinner";
 
 const EasyApply = () => {
   const [jobs, setJobs] = useState([]);
@@ -39,7 +40,7 @@ const EasyApply = () => {
 
         {/* Loading state */}
         {loading ? (
-          <p className="text-center text-gray-500">Loading...</p>
+          <p className="text-center text-gray-500"><LoadingSpinner /></p>
         ) : (
           <div className="flex flex-col">
             {userType ? (
