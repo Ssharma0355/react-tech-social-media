@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore";
+import toast from "react-hot-toast";
+
 
 const VerifyEmail = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState(new Array(6).fill("")); // 6-digit OTP
   const inputRefs = useRef([]);
-  const {verifyEmail} = useAuthStore()
+  const {verifyEmail,resendOtp} = useAuthStore()
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return;
 
@@ -31,12 +33,21 @@ const handleVerify = async () => {
   if (enteredOtp.length === 6) {
     const result = await verifyEmail(enteredOtp);
     if (result.success) {
+      toast.success(result.data.message);
       navigate("/onboarding");
     } else {
-      alert(result.error);
+     toast.error(result.error);
     }
   }
 };
+  const handleResend = async () => {
+    const result = await resendOtp();
+    if (result.success) {
+      toast.success(result.data.message);
+    } else {
+      toast.error(result.error);
+    }
+  };
 
   const isOtpComplete = otp.every((digit) => digit !== "");
 
@@ -81,7 +92,7 @@ const handleVerify = async () => {
 
         <p className="text-sm text-gray-500 mt-4">
           Didn’t receive the OTP?{" "}
-          <button className="text-blue-600 hover:underline">Resend</button>
+          <button onClick={handleResend} className="text-blue-600 hover:underline">Resend</button>
         </p>
       </div>
     </main>
