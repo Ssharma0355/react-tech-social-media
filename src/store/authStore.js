@@ -85,6 +85,26 @@ const useAuthStore = create((set, get) => ({
       return { success: false, error: err.message };
     }
   },
+  resendOtp: async () => {
+    const email = localStorage.getItem("signupEmail");
+    if (!email) return { success: false, error: "No email found" };
+
+    try {
+      const res = await fetch(`${API_BASE}/user/resend-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Resend OTP failed");
+
+      return { success: true, data };
+    } catch (err) {
+      console.error("Resend OTP Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
 }));
 
 

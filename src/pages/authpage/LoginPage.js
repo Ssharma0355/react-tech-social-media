@@ -4,6 +4,8 @@ import NavLayout from "../../layouts/NavLayout";
 import useThemeStore from "../../store/themeStore";
 import useAuthStore from "../../store/authStore"; // ✅ use the same store
 import CaruselSection from "../landingpage/Section1/CaruselSection";
+import toast from "react-hot-toast";
+
 
 const LoginPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
@@ -24,9 +26,10 @@ const LoginPage = () => {
   if (email && password) {
     const result = await login();
     if (result.success) {
+      toast.success(result.data.message);
         navigate("/dashboard");
     } else {
-      alert(result.error);
+     toast.error(result.error);
     }
   } else {
      alert("Please enter both email and password.");
