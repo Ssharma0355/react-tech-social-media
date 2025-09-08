@@ -27,14 +27,14 @@ const Onboarding = () => {
             onClick={forCandidate}
             className="w-full py-3 px-4 rounded-lg border border-gray-300 text-gray-800 font-medium hover:bg-[#4CAF50] hover:text-white transition"
           >
-            👔 Looking for Hiring?
+           Looking for Hiring?
           </button>
 
           <button
             onClick={forConnection}
             className="w-full py-3 px-4 rounded-lg border border-gray-300 text-gray-800 font-medium hover:bg-[#4CAF50] hover:text-white transition"
           >
-            💼 Looking for Connection & Job?
+            Looking for Connection & Job?
           </button>
         </div>
       </div>

@@ -4,6 +4,8 @@ import NavLayout from "../../layouts/NavLayout";
 import CaruselSection from "../landingpage/Section1/CaruselSection";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore"; // ✅ import store
+import toast from "react-hot-toast";
+
 
 const SignupPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
@@ -22,9 +24,10 @@ const handleSubmit = async (e) => {
   if (firstName && lastName && email && password) {
     const result = await signup();
     if (result.success) {
+      toast.success(result.data.message);
       navigate("/verify-email");
     } else {
-      alert(result.error);
+     toast.error(result.error);
     }
   } else {
     alert("Please fill all required fields.");
@@ -41,6 +44,7 @@ const handleSubmit = async (e) => {
       <main
         className={`${darkMode ? "dark" : ""} h-[90vh] md:min-h-screen flex items-center`}
       >
+      
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 px-6 py-8 w-full max-w-6xl mx-auto">
           {/* Left Panel - Form */}
           <div className="flex flex-col w-full md:w-1/2 p-6 bg-white rounded-xl shadow-md gap-6">
