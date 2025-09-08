@@ -10,6 +10,7 @@ import HiringDetails from "../pages/onboarding/hiringUser/HiringDetails";
 import PersonalInfo from "../pages/onboarding/commonUser/PersonalInfo";
 import EasyApply from "../pages/easyapply/EasyApply";
 import Feed from "../pages/feed/Feed";
+import NotFound from "../components/Notfound";
 
 const routes = {
   public: [
@@ -24,7 +25,7 @@ const routes = {
     { path: "/candidate-onboarding", element: <PersonalInfo /> },// 👈 dashboard is public for now
     { path: "/easy-apply", element: <EasyApply /> },
     { path: "/dashboard", element: <Feed /> },
-    { path: "/*", element: <h1>Page not found</h1> },
+    { path: "/*", element: <NotFound /> },
   ],
 
   // private: [
