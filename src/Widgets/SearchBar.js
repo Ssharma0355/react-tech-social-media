@@ -5,7 +5,7 @@ const SearchBar = ({ placeholder = "Search..." }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex items-center w-full max-w-md bg-white border border-gray-300 rounded-[8px] shadow-sm px-3 py-2 focus-within:ring-2 focus-within:ring-[#4CAF50] transition">
+    <div className="flex items-center w-full  bg-white border border-gray-300 rounded-[8px] shadow-sm px-3 py-2 focus-within:ring-2 focus-within:ring-[#787878] transition">
       <Search className="text-gray-400 mr-2 h-5 w-5" />
       <input
         type="text"
