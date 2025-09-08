@@ -1,5 +1,5 @@
 import React from "react";
-import { Home, User, Settings, LogOut, Briefcase, MessageCircle } from "lucide-react";
+import { Home, User, Settings, LogOut, Briefcase, MessageCircle,Bell } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
@@ -55,6 +55,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </li>
           <li onClick={() => handleNavigate("/chat")} className={navItemStyle("/chat")}>
             <MessageCircle size={20} /> Chat
+          </li>
+            <li onClick={() => handleNavigate("/notifications")} className={navItemStyle("/notifications")}>
+            <Bell size={20} /> Notifications
           </li>
           <li onClick={() => handleNavigate("/profile")} className={navItemStyle("/profile")}>
             <User size={20} /> Profile
