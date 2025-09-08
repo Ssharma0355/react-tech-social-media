@@ -9,24 +9,29 @@ const LoginPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
   const navigate = useNavigate();
 
-  const { userInfo, setUserInfo } = useAuthStore();
+  const { userInfo, setUserInfo,login } = useAuthStore();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo({ [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
     const { email, password } = userInfo;
 
-    if (email && password) {
-      // ✅ After login, go to dashboard/homepage
-      navigate("/dashboard");
+  if (email && password) {
+    const result = await login();
+    if (result.success) {
+        navigate("/dashboard");
     } else {
-      alert("Please enter both email and password.");
+      alert(result.error);
     }
-  };
+  } else {
+     alert("Please enter both email and password.");
+  }
+};
 
   const isFormComplete =
     userInfo.email?.trim() !== "" && userInfo.password?.trim() !== "";
