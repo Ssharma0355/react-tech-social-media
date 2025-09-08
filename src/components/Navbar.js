@@ -26,7 +26,7 @@ const Navbar = () => {
       {/* Logo */}
       <div className="flex">
         <h1 className="p-2 text-[#4CAF50] font-bold text-lg md:text-xl">
-          Sachin's Development
+          Testing Build: 8:09:A
         </h1>
       </div>
 
