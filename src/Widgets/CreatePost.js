@@ -30,7 +30,7 @@ const CreatePost = ({
 
   return (
     <div className="flex flex-col p-4 rounded-lg mb-6 mt-6 border border-gray-200 bg-white shadow-sm">
-      <div className="flex flex-row gap-4 items-start">
+      <div className="flex flex-col md:flex-row gap-4 items-start">
         {/* Profile Image */}
         <div className="w-12 h-12 rounded-full border border-gray-300 overflow-hidden">
           <img
