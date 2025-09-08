@@ -64,6 +64,28 @@ const useAuthStore = create((set, get) => ({
       return { success: false, error: err.message };
     }
   },
+   login: async () => {
+    const { email, password } = get().userInfo;
+    try {
+      const res = await fetch(`${API_BASE}/user/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "login failed");
+
+      return { success: true, data };
+    } catch (err) {
+      console.error("login Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
 }));
+
 
 export default useAuthStore;
