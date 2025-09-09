@@ -3,6 +3,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import PostsCard from '../../Widgets/PostsCard';
 import SearchBar from '../../Widgets/SearchBar';
 import CreatePost from '../../Widgets/CreatePost';
+import ExploreCard from '../../Widgets/ExploreCard';
 
 const Feed = () => {
     const handleNewPost = (content) => {
@@ -19,7 +20,15 @@ const Feed = () => {
         placeholder="Share something amazing..."
         onPost={handleNewPost}
       />
-      <PostsCard />
+   <div className='flex flex-row gap-5'>
+  <PostsCard />
+  <div className="w-1/4 py-8 hidden lg:block">
+  <ExploreCard />
+</div>
+
+</div>
+
+      
     </DashboardLayout>
   );
 }
