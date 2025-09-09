@@ -14,7 +14,7 @@ const PostsCard = () => {
   }, [fetchPosts]);
 
   return (
-    <div className="max-w-3xl mx-auto py-8 space-y-6">
+    <div className="w-full mx-auto py-8 space-y-6">
       {posts.map((post) => (
         <div
           key={post._id}
