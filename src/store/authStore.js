@@ -2,6 +2,7 @@
 import { create } from "zustand";
 
 const API_BASE = "https://reactapp-apis-3.onrender.com";
+const LOCAL_API_BASE = "http://localhost:8000";
 
 const useAuthStore = create((set, get) => ({
   userInfo: {
@@ -180,6 +181,52 @@ candidateOnboarding: async (formData) => {
       return { success: false, error: err.message };
     }
   },
+  posts: [],
+
+createPost: async (postData) => {
+  try {
+    const { email, firstName, lastName } = get().userInfo;
+    if (!email) {
+      throw new Error("You must be logged in to create a post");
+    }
+
+    const formData = new FormData();
+    formData.append("author_email", email);
+    formData.append("text", postData.text || "");
+    if (postData.media) formData.append("media", postData.media);
+
+    const res = await fetch(`${API_BASE}/user/posts`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Failed to create post");
+
+    // Update local posts list
+    set((state) => ({ posts: [data.post, ...state.posts] }));
+
+    return { success: true, data };
+  } catch (err) {
+    console.error("Create Post Error:", err);
+    return { success: false, error: err.message };
+  }
+},
+
+
+fetchPosts: async () => {
+  try {
+    const res = await fetch(`${API_BASE}/user/posts`, { method: "GET" });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Failed to fetch posts");
+
+    set({ posts: data.posts });
+    return { success: true, data };
+  } catch (err) {
+    console.error("Fetch Posts Error:", err);
+    return { success: false, error: err.message };
+  }
+},
 }));
 
 export default useAuthStore;
