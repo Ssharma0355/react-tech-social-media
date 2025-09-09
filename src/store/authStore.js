@@ -105,6 +105,55 @@ const useAuthStore = create((set, get) => ({
     }
   },
 
+    // =====================
+  // ✅ Onboarding (Candidate)
+  // =====================
+// inside authStore.js
+// in authStore.js
+candidateOnboarding: async (formData) => {
+  try {
+    const email = get().userInfo.email;
+    const res = await fetch(`${API_BASE}/user/onboarding/candidate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, ...formData }), // send JSON
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Candidate onboarding failed");
+
+    return { success: true, data };
+  } catch (err) {
+    console.error("Candidate Onboarding Error:", err);
+    return { success: false, error: err.message };
+  }
+},
+
+
+
+  // =====================
+  // ✅ Onboarding (Hiring)
+  // =====================
+  hiringOnboarding: async (formData) => {
+    try {
+      const email = get().userInfo.email;
+
+      const res = await fetch(`${API_BASE}/user/onboarding/hiring`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, ...formData }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Hiring onboarding failed");
+
+      return { success: true, data };
+    } catch (err) {
+      console.error("Hiring Onboarding Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
+
   // ✅ Fetch Jobs & Candidates
   fetchUsersData: async () => {
     try {
