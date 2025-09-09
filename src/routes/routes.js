@@ -26,17 +26,13 @@ const routes = {
     { path: "/onboarding", element: <Onboarding /> },
     { path: "/verify-email", element: <VerifyEmail /> },
     { path: "/hiring-onboarding", element: <HiringDetails /> },
-    { path: "/candidate-onboarding", element: <PersonalInfo /> },// 👈 dashboard is public for now
+    { path: "/candidate-onboarding", element: <PersonalInfo /> }, // 👈 dashboard is public for now
     { path: "/easy-apply", element: <EasyApply /> },
     { path: "/dashboard", element: <Feed /> },
     { path: "/chat", element: <Chat /> },
     { path: "/profile", element: <Profile /> },
     { path: "/settings", element: <Settings /> },
     { path: "/notifications", element: <Notifications /> },
-
-
-
-
 
     { path: "/*", element: <NotFound /> },
   ],

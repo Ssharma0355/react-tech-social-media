@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../../store/authStore";
 
 const HiringDetails = () => {
+  const { hiringOnboarding } = useAuthStore();
+
   const [formData, setFormData] = useState({
     jobTitle: "",
     department: "",
@@ -28,14 +31,15 @@ const HiringDetails = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    navigate("/dashboard")
-    
-    console.log("Form submitted:", formData);
-
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const result = await hiringOnboarding(formData);
+  if (result.success) {
+    navigate("/dashboard");
+  } else {
+    console.error(result.error);
+  }
+};
 
   return (
     <main className="w-full mx-auto p-4 md:p-6">
