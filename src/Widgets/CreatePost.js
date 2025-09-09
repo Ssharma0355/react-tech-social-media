@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Image, Video, Paperclip, X } from "lucide-react"; // optional (lucide-react icons)
+import useAuthStore from "../store/authStore";
 
 const CreatePost = ({
   profileImage = "/",
@@ -8,6 +9,8 @@ const CreatePost = ({
 }) => {
   const [content, setContent] = useState("");
   const [media, setMedia] = useState(null);
+    const createPost = useAuthStore((state) => state.createPost);
+
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -16,16 +19,16 @@ const CreatePost = ({
 
   const handleRemoveMedia = () => setMedia(null);
 
-  const handlePost = () => {
+  const handlePost = async () => {
     if (content.trim() === "" && !media) return;
 
-    if (onPost) {
-      const postData = { text: content, media };
-      onPost(postData);
+    const result = await createPost({ text: content, media });
+    if (result.success) {
+      setContent("");
+      setMedia(null);
+    } else {
+      alert(result.error);
     }
-
-    setContent("");
-    setMedia(null);
   };
 
   return (
