@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Image, Video, Paperclip, X } from "lucide-react"; // optional (lucide-react icons)
 import useAuthStore from "../store/authStore";
+import ConnectionImg from ".././assets/Images/connection.jpg";
 
 const CreatePost = ({
-  profileImage = "/",
+  profileImage,
   placeholder = "What's on your mind?",
   onPost,
 }) => {
@@ -37,7 +38,7 @@ const CreatePost = ({
         {/* Profile Image */}
         <div className="w-12 h-12 rounded-full border border-gray-300 overflow-hidden">
           <img
-            src={profileImage}
+            src={ConnectionImg}
             alt="profile"
             className="w-full h-full object-cover"
           />

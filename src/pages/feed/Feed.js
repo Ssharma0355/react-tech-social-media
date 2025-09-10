@@ -4,6 +4,7 @@ import PostsCard from '../../Widgets/PostsCard';
 import SearchBar from '../../Widgets/SearchBar';
 import CreatePost from '../../Widgets/CreatePost';
 import ExploreCard from '../../Widgets/ExploreCard';
+// import ConnectionImg from "../../assets/connection.png";
 
 const Feed = () => {
     const handleNewPost = (content) => {
@@ -16,7 +17,7 @@ const Feed = () => {
       {/* create post */}
       
       <CreatePost
-        profileImage="/profile.jpg"
+        // profileImage={ConnectionImg}
         placeholder="Share something amazing..."
         onPost={handleNewPost}
       />
