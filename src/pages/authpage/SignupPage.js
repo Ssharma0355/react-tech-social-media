@@ -5,7 +5,7 @@ import CaruselSection from "../landingpage/Section1/CaruselSection";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/authStore"; // ✅ import store
 import toast from "react-hot-toast";
-
+import { Mail } from "lucide-react";
 
 const SignupPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
@@ -17,22 +17,22 @@ const SignupPage = () => {
     setUserInfo({ [name]: value }); // ✅ update store
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const { firstName, lastName, email, password } = userInfo;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { firstName, lastName, email, password } = userInfo;
 
-  if (firstName && lastName && email && password) {
-    const result = await signup();
-    if (result.success) {
-      toast.success(result.data.message);
-      navigate("/verify-email");
+    if (firstName && lastName && email && password) {
+      const result = await signup();
+      if (result.success) {
+        toast.success(result.data.message);
+        navigate("/verify-email");
+      } else {
+        toast.error(result.error);
+      }
     } else {
-     toast.error(result.error);
+      alert("Please fill all required fields.");
     }
-  } else {
-    alert("Please fill all required fields.");
-  }
-};
+  };
 
   // ✅ Check if all fields are filled
   const isFormComplete = Object.values(userInfo).every(
@@ -42,15 +42,19 @@ const handleSubmit = async (e) => {
   return (
     <NavLayout>
       <main
-        className={`${darkMode ? "dark" : ""} h-[90vh] md:min-h-screen flex items-center`}
+        className={`${
+          darkMode ? "dark" : ""
+        } h-[90vh] md:min-h-screen flex items-center`}
       >
-      
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 px-6 py-8 w-full max-w-6xl mx-auto">
           {/* Left Panel - Form */}
           <div className="flex flex-col w-full md:w-1/2 p-6 bg-white rounded-xl shadow-md gap-6">
             <div className="flex justify-center">
-              <button className="w-full bg-gray-200 rounded-lg py-2 font-medium hover:bg-gray-300 transition">
-                Signup with Google
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-2 bg-gray-100 rounded-lg py-2 font-medium hover:bg-gray-200 transition"
+              >
+                <Mail size={18} /> Signup with Google
               </button>
             </div>
 
