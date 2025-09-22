@@ -2,19 +2,23 @@
 import { create } from "zustand";
 
 const API_BASE = "https://reactapp-apis-3.onrender.com";
-const LOCAL_API_BASE = "http://localhost:8000";
+// const LOCAL_API_BASE = "http://localhost:8000"; // optional for dev
 
 const useAuthStore = create((set, get) => ({
-  userInfo: {
+  userInfo: JSON.parse(localStorage.getItem("userInfo")) || {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   },
+
+  // ✅ Update user info and save in localStorage
   setUserInfo: (updates) =>
-    set((state) => ({
-      userInfo: { ...state.userInfo, ...updates },
-    })),
+    set((state) => {
+      const updatedUser = { ...state.userInfo, ...updates };
+      localStorage.setItem("userInfo", JSON.stringify(updatedUser));
+      return { userInfo: updatedUser };
+    }),
 
   // ✅ Signup API
   signup: async () => {
@@ -23,12 +27,7 @@ const useAuthStore = create((set, get) => ({
       const res = await fetch(`${API_BASE}/user/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstname: firstName,
-          lastname: lastName,
-          email,
-          password,
-        }),
+        body: JSON.stringify({ firstname: firstName, lastname: lastName, email, password }),
       });
 
       const data = await res.json();
@@ -77,11 +76,28 @@ const useAuthStore = create((set, get) => ({
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
 
+      // ✅ Save user in state + localStorage
+      const user = {
+        firstName: data.user.firstname,
+        lastName: data.user.lastname,
+        email: data.user.email,
+      };
+      set({ userInfo: { ...user, password: "" } });
+      localStorage.setItem("userInfo", JSON.stringify({ ...user, password: "" }));
+
       return { success: true, data };
     } catch (err) {
       console.error("Login Error:", err);
       return { success: false, error: err.message };
     }
+  },
+
+  // ✅ Logout
+  logout: () => {
+    localStorage.removeItem("userInfo");
+    set({
+      userInfo: { firstName: "", lastName: "", email: "", password: "" },
+    });
   },
 
   // ✅ Resend OTP
@@ -106,39 +122,30 @@ const useAuthStore = create((set, get) => ({
     }
   },
 
-    // =====================
   // ✅ Onboarding (Candidate)
-  // =====================
-// inside authStore.js
-// in authStore.js
-candidateOnboarding: async (formData) => {
-  try {
-    const email = get().userInfo.email;
-    const res = await fetch(`${API_BASE}/user/onboarding/candidate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, ...formData }), // send JSON
-    });
+  candidateOnboarding: async (formData) => {
+    try {
+      const email = get().userInfo.email;
+      const res = await fetch(`${API_BASE}/user/onboarding/candidate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, ...formData }),
+      });
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Candidate onboarding failed");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Candidate onboarding failed");
 
-    return { success: true, data };
-  } catch (err) {
-    console.error("Candidate Onboarding Error:", err);
-    return { success: false, error: err.message };
-  }
-},
+      return { success: true, data };
+    } catch (err) {
+      console.error("Candidate Onboarding Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
 
-
-
-  // =====================
   // ✅ Onboarding (Hiring)
-  // =====================
   hiringOnboarding: async (formData) => {
     try {
       const email = get().userInfo.email;
-
       const res = await fetch(`${API_BASE}/user/onboarding/hiring`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -166,14 +173,8 @@ candidateOnboarding: async (formData) => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Fetching users failed");
 
-      // Separate jobs and candidates
-      const jobs = data.users
-        .filter((user) => user.hiring_details)
-        .map((user) => user.hiring_details);
-
-      const candidates = data.users
-        .filter((user) => user.candidate_details)
-        .map((user) => user.candidate_details);
+      const jobs = data.users.filter((u) => u.hiring_details).map((u) => u.hiring_details);
+      const candidates = data.users.filter((u) => u.candidate_details).map((u) => u.candidate_details);
 
       return { success: true, jobs, candidates };
     } catch (err) {
@@ -181,52 +182,47 @@ candidateOnboarding: async (formData) => {
       return { success: false, error: err.message };
     }
   },
+
+  // =====================
+  // ✅ Posts
+  // =====================
   posts: [],
 
-createPost: async (postData) => {
-  try {
-    const { email, firstName, lastName } = get().userInfo;
-    if (!email) {
-      throw new Error("You must be logged in to create a post");
+  createPost: async (postData) => {
+    try {
+      const { email } = get().userInfo;
+      if (!email) throw new Error("You must be logged in to create a post");
+
+      const formData = new FormData();
+      formData.append("author_email", email);
+      formData.append("text", postData.text || "");
+      if (postData.media) formData.append("media", postData.media);
+
+      const res = await fetch(`${API_BASE}/user/posts`, { method: "POST", body: formData });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to create post");
+
+      set((state) => ({ posts: [data.post, ...state.posts] }));
+      return { success: true, data };
+    } catch (err) {
+      console.error("Create Post Error:", err);
+      return { success: false, error: err.message };
     }
+  },
 
-    const formData = new FormData();
-    formData.append("author_email", email);
-    formData.append("text", postData.text || "");
-    if (postData.media) formData.append("media", postData.media);
+  fetchPosts: async () => {
+    try {
+      const res = await fetch(`${API_BASE}/user/posts`, { method: "GET" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to fetch posts");
 
-    const res = await fetch(`${API_BASE}/user/posts`, {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Failed to create post");
-
-    // Update local posts listg
-    set((state) => ({ posts: [data.post, ...state.posts] }));
-
-    return { success: true, data };
-  } catch (err) {
-    console.error("Create Post Error:", err);
-    return { success: false, error: err.message };
-  }
-},
-
-
-fetchPosts: async () => {
-  try {
-    const res = await fetch(`${API_BASE}/user/posts`, { method: "GET" });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Failed to fetch posts");
-
-    set({ posts: data.posts });
-    return { success: true, data };
-  } catch (err) {
-    console.error("Fetch Posts Error:", err);
-    return { success: false, error: err.message };
-  }
-},
+      set({ posts: data.posts });
+      return { success: true, data };
+    } catch (err) {
+      console.error("Fetch Posts Error:", err);
+      return { success: false, error: err.message };
+    }
+  },
 }));
 
 export default useAuthStore;

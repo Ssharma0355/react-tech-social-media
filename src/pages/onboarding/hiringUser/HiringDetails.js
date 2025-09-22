@@ -35,7 +35,7 @@ const HiringDetails = () => {
   e.preventDefault();
   const result = await hiringOnboarding(formData);
   if (result.success) {
-    navigate("/dashboard");
+    navigate("/login");
   } else {
     console.error(result.error);
   }
