@@ -10,8 +10,14 @@ export default function CompanyCarousel({ companies }) {
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
 
   return (
     <section className="w-full  py-16 px-4 sm:px-6 lg:px-12">
@@ -20,36 +26,42 @@ export default function CompanyCarousel({ companies }) {
           Popular Companies Hiring Now
         </h1>
         <p className="text-gray-600 mt-4 text-base sm:text-lg max-w-2xl mx-auto">
-          Explore opportunities with leading companies across industries. 
-          Be part of innovation, creativity, and growth.
+          Explore opportunities with leading companies across industries. Be
+          part of innovation, creativity, and growth.
         </p>
       </div>
 
       <div className="relative">
         {/* Carousel viewport */}
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div
+          className="overflow-hidden rounded-lg p-5 bg-[#F5F7FA]/90 backdrop-blur-sm shadow-md"
+          ref={emblaRef}
+        >
           <div className="flex gap-6 p-2">
             {companies.map((company, index) => (
               <div
                 key={index}
                 className="
-                  flex-[0_0_90%] 
-                  sm:flex-[0_0_60%] 
-                  md:flex-[0_0_45%] 
-                  lg:flex-[0_0_30%] 
-                  xl:flex-[0_0_22%]
-                    border border-gray-100 
-                  rounded-2xl shadow-lg hover:shadow-2xl 
-                  transition-all duration-300 p-8 
-                  flex flex-col items-center justify-between text-center
-                "
+    flex-[0_0_90%] 
+    sm:flex-[0_0_60%] 
+    md:flex-[0_0_45%] 
+    lg:flex-[0_0_30%] 
+    xl:flex-[0_0_22%]
+    border border-gray-100 
+    rounded-2xl shadow-lg hover:shadow-2xl 
+    transition-all duration-300 p-8 
+    flex flex-col items-center justify-between text-center
+    bg-white/70 backdrop-blur-sm
+  "
               >
                 <img
                   src={company.logo}
                   alt={company.name}
                   className="w-20 h-20 sm:w-24 sm:h-24 object-contain mb-4 transition-transform duration-300 hover:scale-110"
                 />
-                <h2 className="text-lg sm:text-xl font-semibold text-gray-800">{company.name}</h2>
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+                  {company.name}
+                </h2>
                 <p className="text-gray-500 text-sm sm:text-base mt-3 leading-relaxed">
                   {company.description}
                 </p>
