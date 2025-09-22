@@ -5,36 +5,35 @@ import useThemeStore from "../../store/themeStore";
 import useAuthStore from "../../store/authStore"; // ✅ use the same store
 import CaruselSection from "../landingpage/Section1/CaruselSection";
 import toast from "react-hot-toast";
-
+import { Mail } from "lucide-react";
 
 const LoginPage = () => {
   const darkMode = useThemeStore((state) => state.darkMode);
   const navigate = useNavigate();
 
-  const { userInfo, setUserInfo,login } = useAuthStore();
+  const { userInfo, setUserInfo, login } = useAuthStore();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo({ [name]: value });
   };
 
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
     const { email, password } = userInfo;
 
-  if (email && password) {
-    const result = await login();
-    if (result.success) {
-      toast.success(result.data.message);
+    if (email && password) {
+      const result = await login();
+      if (result.success) {
+        toast.success(result.data.message);
         navigate("/dashboard");
+      } else {
+        toast.error(result.error);
+      }
     } else {
-     toast.error(result.error);
+      alert("Please enter both email and password.");
     }
-  } else {
-     alert("Please enter both email and password.");
-  }
-};
+  };
 
   const isFormComplete =
     userInfo.email?.trim() !== "" && userInfo.password?.trim() !== "";
@@ -42,14 +41,19 @@ const LoginPage = () => {
   return (
     <NavLayout>
       <main
-        className={`${darkMode ? "dark" : ""} h-[90vh] md:min-h-screen flex items-center`}
+        className={`${
+          darkMode ? "dark" : ""
+        } h-[90vh] md:min-h-screen flex items-center`}
       >
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 px-6 py-8 w-full max-w-6xl mx-auto">
           {/* Left Panel - Form */}
           <div className="flex flex-col w-full md:w-1/2 p-6 bg-white rounded-xl shadow-md gap-6">
             <div className="flex justify-center">
-              <button className="w-full bg-gray-200 rounded-lg py-2 font-medium hover:bg-gray-300 transition">
-                Login with Google
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-2 bg-gray-100 rounded-lg py-2 font-medium hover:bg-gray-200 transition"
+              >
+                <Mail size={18} /> Login with Google
               </button>
             </div>
 
