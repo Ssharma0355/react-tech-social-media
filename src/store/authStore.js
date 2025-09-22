@@ -195,7 +195,7 @@ createPost: async (postData) => {
     formData.append("text", postData.text || "");
     if (postData.media) formData.append("media", postData.media);
 
-    const res = await fetch(`${LOCAL_API_BASE}/user/posts`, {
+    const res = await fetch(`${API_BASE}/user/posts`, {
       method: "POST",
       body: formData,
     });
@@ -216,7 +216,7 @@ createPost: async (postData) => {
 
 fetchPosts: async () => {
   try {
-    const res = await fetch(`${LOCAL_API_BASE}/user/posts`, { method: "GET" });
+    const res = await fetch(`${API_BASE}/user/posts`, { method: "GET" });
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Failed to fetch posts");
 
