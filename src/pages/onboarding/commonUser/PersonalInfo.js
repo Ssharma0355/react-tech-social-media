@@ -49,7 +49,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   const result = await candidateOnboarding(formData);
   if (result.success) {
-    navigate("/dashboard");
+    navigate("/login");
   } else {
     console.error(result.error);
   }
