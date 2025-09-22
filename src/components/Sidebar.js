@@ -1,23 +1,23 @@
 import React from "react";
-import { Home, User, Settings, LogOut, Briefcase, MessageCircle,Bell } from "lucide-react";
+import { Home, User, Settings, LogOut, Briefcase, MessageCircle, Bell } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import useAuthStore from "../store/authStore";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { userInfo, logout } = useAuthStore();
 
-  // navigation handler
   const handleNavigate = (path) => {
     navigate(path);
-    setIsOpen(false); // close sidebar on mobile after click
+    setIsOpen(false); // close sidebar on mobile
   };
 
-  // active link style
   const navItemStyle = (path) =>
     `flex items-center gap-3 px-4 py-2 rounded-lg cursor-pointer transition-colors ${
       location.pathname === path
-        ? "bg-[#4CAF50] text-white" // Active
-        : "text-gray-700 hover:bg-gray-100 hover:text-[#4CAF50]" // Hover
+        ? "bg-[#4CAF50] text-white"
+        : "text-gray-700 hover:bg-gray-100 hover:text-[#4CAF50]"
     }`;
 
   return (
@@ -33,14 +33,16 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       <div className="p-6 border-b border-gray-200 flex items-center gap-3">
         <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#4CAF50]">
           <img
-            src="/profile.jpg" // Replace with dynamic user image
+            src="/profile.jpg" // TODO: replace with dynamic user image later
             alt="User Profile"
             className="w-full h-full object-cover"
           />
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-gray-800">John Doe</h2>
-          <p className="text-sm text-gray-500">Software Engineer</p>
+          <h2 className="text-lg font-semibold text-gray-800">
+            {userInfo?.firstName} {userInfo?.lastName}
+          </h2>
+          <p className="text-sm text-gray-500">{userInfo?.email}</p>
         </div>
       </div>
 
@@ -56,7 +58,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <li onClick={() => handleNavigate("/chat")} className={navItemStyle("/chat")}>
             <MessageCircle size={20} /> Chat
           </li>
-            <li onClick={() => handleNavigate("/notifications")} className={navItemStyle("/notifications")}>
+          <li onClick={() => handleNavigate("/notifications")} className={navItemStyle("/notifications")}>
             <Bell size={20} /> Notifications
           </li>
           <li onClick={() => handleNavigate("/profile")} className={navItemStyle("/profile")}>
@@ -71,7 +73,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       {/* Logout */}
       <div
         className="p-4 border-t border-gray-200 cursor-pointer flex items-center gap-2 text-gray-700 hover:text-white hover:bg-[#4CAF50] transition"
-        onClick={() => handleNavigate("/")}
+        onClick={() => {
+          logout();
+          navigate("/"); // back to home/login
+        }}
       >
         <LogOut size={20} />
         Logout
