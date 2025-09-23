@@ -33,6 +33,8 @@ export default function CompanyCarousel({ companies }) {
 
       <div className="relative">
         {/* Carousel viewport */}
+        {/* Carousel viewport */}
+
         <div
           className="overflow-hidden rounded-lg p-5 bg-[#F5F7FA]/90 backdrop-blur-sm shadow-md"
           ref={emblaRef}
