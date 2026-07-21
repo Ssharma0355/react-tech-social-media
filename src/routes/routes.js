@@ -15,6 +15,7 @@ import Chat from "../pages/chat/Chat";
 import Profile from "../pages/profile/Profile";
 import Settings from "../pages/settings/Settings";
 import Notifications from "../pages/notifications/Notifications";
+import DemoFeed from "../pages/demo-page/DemoFeed";
 
 const routes = {
   public: [
@@ -33,6 +34,7 @@ const routes = {
     { path: "/profile", element: <Profile /> },
     { path: "/settings", element: <Settings /> },
     { path: "/notifications", element: <Notifications /> },
+    { path: "/demo-view", element: <DemoFeed />},
 
     { path: "/*", element: <NotFound /> },
   ],
