@@ -57,6 +57,12 @@ const Navbar = () => {
           Login
         </button>
         <button
+          onClick={() => handleNavigate("/demo-view")}
+          className="p-2 bg-[#ffffff] text-black whitespace-nowrap w-full font-medium rounded-[8px] border  hover:border-[#43a047] hover:bg-[#f1f4f1] transition"
+        >
+          Use Demo! 
+        </button>
+        <button
           onClick={() => handleNavigate("/signup")}
           className="p-2 bg-[#4CAF50] text-white whitespace-nowrap w-full font-medium rounded-[8px] hover:bg-[#43a047] transition"
         >
